@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Insights & Blog | Power BI & Microsoft Fabric Expertise</title>
+    <meta name="description" content="Expert insights on data analytics, Power BI development, Microsoft Fabric implementation, and business intelligence best practices. Stay ahead with the latest trends and strategies.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Data Analytics Insights & Blog | Power BI & Microsoft Fabric Expertise">
+    <meta property="og:description" content="Professional insights and best practices for data analytics, Power BI development, Microsoft Fabric implementation, and business intelligence strategies.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-navy: #1a365d;
+            --steel-blue: #2d3748;
+            --bright-blue: #3182ce;
+            --light-gray: #f7fafc;
+            --charcoal: #2d3748;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-filter {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .category-filter:hover {
+            border-color: var(--bright-blue);
+            color: var(--bright-blue);
+        }
+        
+        .category-filter.active {
+            background: var(--bright-blue);
+            border-color: var(--bright-blue);
+            color: white;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-left: 48px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #e0e7ff;
+            color: #3730a3;
+            margin: 2px;
+        }
+        
+        .reading-time {
+            display: flex;
+            align-items: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .nav-link.active {
+            color: var(--bright-blue);
+            border-bottom: 2px solid var(--bright-blue);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .newsletter-form {
+            background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+            border: 1px solid #bfdbfe;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .featured-article {
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .featured-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('resources/data-transformation.png') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .featured-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">DataVision Pro</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="case-studies.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Case Studies</a>
+                        <a href="blog.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Insights</a>
+                        <a href="index.html#consultation" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Free Consultation</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu fixed top-16 right-0 h-full w-64 bg-white shadow-lg md:hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Services</a>
+                <a href="case-studies.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Case Studies</a>
+                <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Insights</a>
+                <a href="index.html#consultation" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center">Free Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-on-scroll">
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                    Data Analytics Insights & Expertise
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Stay ahead of the curve with expert insights on Power BI development, Microsoft Fabric implementation, and data analytics best practices that drive business transformation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="featured-article animate-on-scroll">
+                <div class="featured-content p-12 text-white">
+                    <div class="max-w-4xl">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-semibold">Featured Article</span>
+                            <div class="ml-4 reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                8 min read
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-4xl font-bold mb-6">
+                            5 Critical Signs Your Organization Needs Power BI Implementation
+                        </h2>
+                        
+                        <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                            Discover the key indicators that signal it's time to upgrade your data analytics capabilities with Power BI. Learn how to identify inefficiencies and unlock the full potential of your business data.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Business Intelligence</span>
+                            <span class="tag">Data Strategy</span>
+                            <span class="tag">ROI</span>
+                        </div>
+                        
+                        <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block">
+                            Read Full Article
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
+                <!-- Search Box -->
+                <div class="search-box w-full lg:w-96 animate-on-scroll">
+                    <div class="search-icon">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/>
+                        </svg>
+                    </div>
+                    <input type="text" id="blog-search" placeholder="Search articles..." class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-3 animate-on-scroll">
+                    <button class="category-filter active" data-category="all">All Topics</button>
+                    <button class="category-filter" data-category="powerbi">Power BI</button>
+                    <button class="category-filter" data-category="fabric">Microsoft Fabric</button>
+                    <button class="category-filter" data-category="analytics">Analytics Strategy</button>
+                    <button class="category-filter" data-category="roi">ROI & Business Value</button>
+                    <button class="category-filter" data-category="best-practices">Best Practices</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Articles Grid -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="blog-card animate-on-scroll" data-categories="powerbi,roi" data-title="5 signs your organization needs power bi">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Power BI</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                8 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            5 Critical Signs Your Organization Needs Power BI Implementation
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Discover the key indicators that signal it's time to upgrade your data analytics capabilities with Power BI. Learn how to identify inefficiencies and unlock the full potential of your business data.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Business Intelligence</span>
+                            <span class="tag">Data Strategy</span>
+                            <span class="tag">ROI</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 15, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card animate-on-scroll" data-categories="fabric,analytics" data-title="microsoft fabric vs traditional data warehouses">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Microsoft Fabric</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                12 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Microsoft Fabric vs Traditional Data Warehouses: A Strategic Comparison
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Explore the key differences between Microsoft Fabric and traditional data warehouse solutions. Understand when to migrate and how to maximize your data platform investment.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Data Architecture</span>
+                            <span class="tag">Cloud Migration</span>
+                            <span class="tag">Modern Analytics</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 12, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card animate-on-scroll" data-categories="roi,analytics" data-title="calculating roi on business intelligence investments">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">ROI Analysis</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                10 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Calculating ROI on Business Intelligence Investments: A Complete Framework
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Learn how to measure and maximize the return on your BI investments. Includes practical formulas, real-world examples, and a downloadable ROI calculator template.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Business Value</span>
+                            <span class="tag">Cost Analysis</span>
+                            <span class="tag">Metrics</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 10, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card animate-on-scroll" data-categories="best-practices,analytics" data-title="data governance best practices for 2024">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Best Practices</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                15 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Data Governance Best Practices for 2024: Building Trust in Your Analytics
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Establish robust data governance frameworks that ensure data quality, security, and compliance while enabling self-service analytics across your organization.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Data Quality</span>
+                            <span class="tag">Compliance</span>
+                            <span class="tag">Security</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 8, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card animate-on-scroll" data-categories="powerbi,best-practices" data-title="building self-service analytics teams">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Power BI</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                11 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Building Self-Service Analytics Teams: A Step-by-Step Guide
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Transform your organization into a data-driven powerhouse by building effective self-service analytics teams. Learn the roles, skills, and processes needed for success.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Team Building</span>
+                            <span class="tag">Training</span>
+                            <span class="tag">Change Management</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 5, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-card animate-on-scroll" data-categories="powerbi,best-practices" data-title="avoiding common dashboard design mistakes">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Power BI</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                9 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Avoiding Common Dashboard Design Mistakes That Kill User Adoption
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Don't let poor dashboard design sabotage your analytics investment. Learn the most common mistakes and how to create intuitive, actionable dashboards that users love.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Dashboard Design</span>
+                            <span class="tag">UX</span>
+                            <span class="tag">User Adoption</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 3, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 7 -->
+                <article class="blog-card animate-on-scroll" data-categories="fabric,analytics" data-title="microsoft fabric implementation roadmap">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Microsoft Fabric</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                14 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Microsoft Fabric Implementation Roadmap: From Planning to Production
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Complete guide to implementing Microsoft Fabric in your organization. Includes planning phases, technical considerations, and best practices for successful deployment.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Implementation</span>
+                            <span class="tag">Planning</span>
+                            <span class="tag">Best Practices</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on October 1, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 8 -->
+                <article class="blog-card animate-on-scroll" data-categories="analytics,roi" data-title="measuring analytics maturity">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Analytics Strategy</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                13 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Measuring Analytics Maturity: Where Does Your Organization Stand?
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Assess your organization's analytics maturity level and create a strategic roadmap for advancement. Includes practical assessment framework and improvement strategies.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Assessment</span>
+                            <span class="tag">Strategy</span>
+                            <span class="tag">Maturity Model</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on September 28, 2024</div>
+                    </div>
+                </article>
+
+                <!-- Article 9 -->
+                <article class="blog-card animate-on-scroll" data-categories="powerbi,best-practices" data-title="power bi performance optimization">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="tag">Power BI</span>
+                            <div class="reading-time">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                                </svg>
+                                16 min read
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            Power BI Performance Optimization: Advanced Techniques for Large Datasets
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Master advanced techniques for optimizing Power BI performance with large datasets. Learn data modeling strategies, DAX optimization, and infrastructure considerations.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Performance</span>
+                            <span class="tag">DAX</span>
+                            <span class="tag">Data Modeling</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-500">Published on September 25, 2024</div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-12 animate-on-scroll">
+                <button id="load-more" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    Load More Articles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="newsletter-form animate-on-scroll">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Stay Updated with Expert Insights</h2>
+                    <p class="text-xl text-gray-600">
+                        Get the latest data analytics trends, best practices, and exclusive content delivered to your inbox.
+                    </p>
+                </div>
+                
+                <form id="newsletter-form" class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" name="email" required placeholder="Enter your email address" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 text-sm text-gray-600 text-center">
+                        ✓ Free weekly insights ✓ No spam ✓ Unsubscribe anytime
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Topics -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Popular Topics</h2>
+                <p class="text-xl text-gray-600">Explore our most-read content across key data analytics areas</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Power BI Development</h3>
+                    <p class="text-gray-600 text-sm">Custom dashboards, data modeling, and advanced DAX techniques</p>
+                    <div class="mt-4 text-blue-600 font-semibold">12 Articles</div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Microsoft Fabric</h3>
+                    <p class="text-gray-600 text-sm">Implementation guides, architecture best practices, and migration strategies</p>
+                    <div class="mt-4 text-blue-600 font-semibold">8 Articles</div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Advanced Analytics</h3>
+                    <p class="text-gray-600 text-sm">Machine learning, predictive modeling, and statistical analysis</p>
+                    <div class="mt-4 text-blue-600 font-semibold">15 Articles</div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">ROI & Strategy</h3>
+                    <p class="text-gray-600 text-sm">Business value measurement, strategic planning, and cost optimization</p>
+                    <div class="mt-4 text-blue-600 font-semibold">10 Articles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">DataVision Pro</div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Professional data analytics consulting services that transform complex data into strategic business advantage.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html#powerbi" class="hover:text-white transition-colors">Power BI Development</a></li>
+                        <li><a href="services.html#fabric" class="hover:text-white transition-colors">Microsoft Fabric</a></li>
+                        <li><a href="services.html#analytics" class="hover:text-white transition-colors">Advanced Analytics</a></li>
+                        <li><a href="services.html#training" class="hover:text-white transition-colors">Analytics Training</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="case-studies.html" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Insights & Blog</a></li>
+                        <li><a href="index.html#roi-calculator" class="hover:text-white transition-colors">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 hello@datavisionpro.com</p>
+                        <p>📞 (555) 123-4567</p>
+                        <p>🌐 www.datavisionpro.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 DataVision Pro. All rights reserved. | Professional Data Analytics Consulting Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Blog functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('blog-search');
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            const blogCards = document.querySelectorAll('.blog-card');
+            const loadMoreBtn = document.getElementById('load-more');
+            
+            let currentFilter = 'all';
+            let searchTerm = '';
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                searchTerm = this.value.toLowerCase();
+                filterArticles();
+            });
+            
+            // Category filter functionality
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active filter
+                    categoryFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentFilter = this.dataset.category;
+                    filterArticles();
+                });
+            });
+            
+            function filterArticles() {
+                let visibleCount = 0;
+                
+                blogCards.forEach(card => {
+                    const categories = card.dataset.categories;
+                    const title = card.dataset.title;
+                    
+                    const matchesFilter = currentFilter === 'all' || categories.includes(currentFilter);
+                    const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+                    
+                    if (matchesFilter && matchesSearch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide load more button based on results
+                loadMoreBtn.style.display = visibleCount > 6 ? 'block' : 'none';
+            }
+            
+            // Load more functionality
+            let displayedArticles = 6;
+            loadMoreBtn.addEventListener('click', function() {
+                displayedArticles += 3;
+                
+                const visibleCards = Array.from(blogCards).filter(card => card.style.display !== 'none');
+                
+                visibleCards.forEach((card, index) => {
+                    if (index < displayedArticles) {
+                        card.style.display = 'block';
+                    }
+                });
+                
+                if (displayedArticles >= visibleCards.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+            
+            // Initial filter
+            filterArticles();
+        });
+    </script>
+</body>
+</html>

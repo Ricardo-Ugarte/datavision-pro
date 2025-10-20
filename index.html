@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Consulting | Power BI & Microsoft Fabric Experts</title>
+    <meta name="description" content="Transform your business with expert data analytics consulting. Specializing in Power BI development, Microsoft Fabric implementation, and advanced analytics solutions that drive strategic growth.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Data Analytics Consulting | Power BI & Microsoft Fabric Experts">
+    <meta property="og:description" content="Professional data analytics consulting services helping businesses transform data into strategic advantage through Power BI, Microsoft Fabric, and advanced analytics.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-navy: #1a365d;
+            --steel-blue: #2d3748;
+            --bright-blue: #3182ce;
+            --light-gray: #f7fafc;
+            --charcoal: #2d3748;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .hero-background {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--steel-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('resources/hero-data-analytics.png') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .typewriter-cursor {
+            color: var(--bright-blue);
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .nav-link.active {
+            color: var(--bright-blue);
+            border-bottom: 2px solid var(--bright-blue);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .chart-container {
+            min-height: 300px;
+        }
+        
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold gradient-text">DataVision Pro</div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="case-studies.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Case Studies</a>
+                        <a href="blog.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Insights</a>
+                        <a href="#consultation" class="cta-button bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Free Consultation</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu fixed top-16 right-0 h-full w-64 bg-white shadow-lg md:hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Services</a>
+                <a href="case-studies.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Case Studies</a>
+                <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Insights</a>
+                <a href="#consultation" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center">Free Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-background pt-16 pb-20">
+        <canvas id="particle-canvas" class="particle-canvas"></canvas>
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        <span class="hero-typewriter"></span>
+                    </h1>
+                    <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                        Professional data analytics consulting that transforms complex data into actionable business intelligence. 
+                        Specializing in Power BI development, Microsoft Fabric implementation, and advanced analytics solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#consultation" class="cta-button bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center">
+                            Get Free Consultation
+                        </a>
+                        <a href="services.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-center">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <img src="resources/hero-data-analytics.png" alt="Data Analytics Visualization" class="w-full h-auto rounded-lg shadow-2xl">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose DataVision Pro</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We bring clarity to complexity, precision to analysis, and transform raw data into strategic business value.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center animate-on-scroll hover-lift">
+                    <div class="service-icon mx-auto">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Clarity</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Transform complex data into clear, actionable insights that drive informed decision-making across your organization.
+                    </p>
+                </div>
+                
+                <div class="text-center animate-on-scroll hover-lift">
+                    <div class="service-icon mx-auto">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 001 1h6a1 1 0 001-1V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Precision</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Accurate analysis and reliable insights you can trust, delivered with meticulous attention to data integrity.
+                    </p>
+                </div>
+                
+                <div class="text-center animate-on-scroll hover-lift">
+                    <div class="service-icon mx-auto">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Strategic Value</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Measurable business impact through data-driven strategies that improve efficiency, reduce costs, and drive growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Expertise</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive data analytics services designed to unlock the full potential of your business data.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Power BI Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Custom dashboard development, data modeling, and interactive visualizations that make your data come alive.
+                    </p>
+                    <a href="services.html#powerbi" class="text-blue-600 font-semibold hover:text-blue-700">Learn More →</a>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Microsoft Fabric</h3>
+                    <p class="text-gray-600 mb-4">
+                        End-to-end data platform implementation, migration services, and unified analytics solutions.
+                    </p>
+                    <a href="services.html#fabric" class="text-blue-600 font-semibold hover:text-blue-700">Learn More →</a>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Advanced Analytics</h3>
+                    <p class="text-gray-600 mb-4">
+                        Predictive modeling, machine learning solutions, and statistical analysis for deeper insights.
+                    </p>
+                    <a href="services.html#analytics" class="text-blue-600 font-semibold hover:text-blue-700">Learn More →</a>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md hover-lift animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics Training</h3>
+                    <p class="text-gray-600 mb-4">
+                        Comprehensive training programs to build your team's data analytics capabilities and Power BI expertise.
+                    </p>
+                    <a href="services.html#training" class="text-blue-600 font-semibold hover:text-blue-700">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Calculate Your ROI</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover the potential return on investment for your data analytics initiative with our interactive calculator.
+                </p>
+            </div>
+            
+            <div id="roi-calculator" class="bg-gray-50 rounded-lg p-8 animate-on-scroll">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Your Business Information</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Annual Revenue</label>
+                                <input type="number" id="revenue" class="roi-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="$10,000,000" value="10000000">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Number of Employees</label>
+                                <input type="number" id="employees" class="roi-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="500" value="500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Hours Spent on Reporting (per week)</label>
+                                <input type="number" id="reporting-hours" class="roi-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="40" value="40">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Industry</label>
+                                <select id="industry" class="roi-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="manufacturing">Manufacturing</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="financial">Financial Services</option>
+                                    <option value="retail">Retail</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="general">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Projected Results</h3>
+                        <div class="roi-results">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                        <div id="roi-chart" class="chart-container mt-6" style="height: 300px;"></div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <p class="text-sm text-blue-800">
+                                <strong>Ready to achieve these results?</strong> Schedule a free consultation to discuss your specific needs and create a customized implementation plan.
+                            </p>
+                            <a href="#consultation" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Get Free Consultation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h2>
+                <p class="text-xl text-gray-600">
+                    Delivering measurable results for organizations across diverse industries.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60 mb-16">
+                <div class="text-center animate-on-scroll">
+                    <div class="text-3xl font-bold text-blue-600 counter" data-target="150">0</div>
+                    <div class="text-gray-600 mt-2">Projects Completed</div>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <div class="text-3xl font-bold text-green-600 counter" data-target="95">0</div>
+                    <div class="text-gray-600 mt-2">Client Satisfaction %</div>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <div class="text-3xl font-bold text-purple-600 counter" data-target="50">0</div>
+                    <div class="text-gray-600 mt-2">Fortune 500 Clients</div>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <div class="text-3xl font-bold text-orange-600 counter" data-target="25">0</div>
+                    <div class="text-gray-600 mt-2">Years Experience</div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-on-scroll">
+                <blockquote class="text-2xl font-light text-gray-700 italic mb-6 max-w-4xl mx-auto">
+                    "DataVision Pro transformed our decision-making process. We now have real-time insights that drive our strategic planning and have seen a 40% improvement in operational efficiency."
+                </blockquote>
+                <cite class="text-gray-600 font-medium">
+                    Sarah Johnson, Chief Data Officer at TechCorp Industries
+                </cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation CTA -->
+    <section id="consultation" class="py-20 bg-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Data?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Schedule a free consultation to discuss your data analytics needs and discover how we can help you achieve your business goals.
+            </p>
+            
+            <form id="consultation-form" class="bg-white rounded-lg p-8 max-w-2xl mx-auto text-left">
+                <div class="form-step active">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" name="firstName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" name="lastName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                            <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div class="mt-6 text-right">
+                        <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="form-step">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Project Details</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                            <input type="text" name="company" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Industry *</label>
+                            <select name="industry" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select Industry</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="financial">Financial Services</option>
+                                <option value="retail">Retail</option>
+                                <option value="technology">Technology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Current Challenges</label>
+                            <textarea name="challenges" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Describe your current data challenges..."></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" class="prev-step bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors">Previous</button>
+                        <button type="button" class="next-step bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="form-step">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Service Interest</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="services" value="powerbi" class="mr-3 text-blue-600">
+                            <span>Power BI Development</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="services" value="fabric" class="mr-3 text-blue-600">
+                            <span>Microsoft Fabric Implementation</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="services" value="analytics" class="mr-3 text-blue-600">
+                            <span>Advanced Analytics</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="services" value="training" class="mr-3 text-blue-600">
+                            <span>Analytics Training</span>
+                        </label>
+                    </div>
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" class="prev-step bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors">Previous</button>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Submit Request</button>
+                    </div>
+                </div>
+                
+                <div class="progress-bar-container mb-6">
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 33%"></div>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">Step 1 of 3</div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">DataVision Pro</div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Professional data analytics consulting services that transform complex data into strategic business advantage.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html#powerbi" class="hover:text-white transition-colors">Power BI Development</a></li>
+                        <li><a href="services.html#fabric" class="hover:text-white transition-colors">Microsoft Fabric</a></li>
+                        <li><a href="services.html#analytics" class="hover:text-white transition-colors">Advanced Analytics</a></li>
+                        <li><a href="services.html#training" class="hover:text-white transition-colors">Analytics Training</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="case-studies.html" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Insights & Blog</a></li>
+                        <li><a href="#roi-calculator" class="hover:text-white transition-colors">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 hello@datavisionpro.com</p>
+                        <p>📞 (555) 123-4567</p>
+                        <p>🌐 www.datavisionpro.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 DataVision Pro. All rights reserved. | Professional Data Analytics Consulting Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Services | Power BI & Microsoft Fabric Consulting</title>
+    <meta name="description" content="Professional data analytics services including Power BI development, Microsoft Fabric implementation, advanced analytics, and comprehensive training programs.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Data Analytics Services | Power BI & Microsoft Fabric Consulting">
+    <meta property="og:description" content="Comprehensive data analytics services designed to transform your business through expert Power BI development, Microsoft Fabric implementation, and advanced analytics solutions.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-navy: #1a365d;
+            --steel-blue: #2d3748;
+            --bright-blue: #3182ce;
+            --light-gray: #f7fafc;
+            --charcoal: #2d3748;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .demo-dashboard {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .dashboard-tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .dashboard-tab.active {
+            background: white;
+            border-bottom-color: var(--bright-blue);
+            color: var(--bright-blue);
+        }
+        
+        .dashboard-tab:hover:not(.active) {
+            background: #f1f5f9;
+        }
+        
+        .chart-container {
+            min-height: 400px;
+            padding: 20px;
+        }
+        
+        .chart-container.active {
+            display: block;
+        }
+        
+        .chart-container:not(.active) {
+            display: none;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--bright-blue);
+            transform: translateY(-4px);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--bright-blue);
+            background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+        }
+        
+        .nav-link.active {
+            color: var(--bright-blue);
+            border-bottom: 2px solid var(--bright-blue);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">DataVision Pro</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="case-studies.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Case Studies</a>
+                        <a href="blog.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Insights</a>
+                        <a href="index.html#consultation" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Free Consultation</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu fixed top-16 right-0 h-full w-64 bg-white shadow-lg md:hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Services</a>
+                <a href="case-studies.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Case Studies</a>
+                <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Insights</a>
+                <a href="index.html#consultation" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center">Free Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-on-scroll">
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                    Comprehensive Data Analytics Services
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    From Power BI dashboard development to Microsoft Fabric implementation, we provide end-to-end data analytics solutions that transform your business intelligence capabilities and drive measurable results.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <!-- Power BI Development -->
+                <div id="powerbi" class="service-card p-8 animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Power BI Development</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Transform your raw data into compelling visual stories with our expert Power BI development services. We create custom dashboards, implement advanced data models, and design interactive reports that drive decision-making across your organization.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Custom Dashboard Development</h4>
+                                <p class="text-gray-600">Tailored visualizations that align with your business objectives and KPIs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Advanced Data Modeling</h4>
+                                <p class="text-gray-600">Sophisticated DAX calculations and optimized data relationships</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Self-Service BI Solutions</h4>
+                                <p class="text-gray-600">Empower your team with intuitive, user-friendly reporting tools</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-3">Typical Results:</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="text-2xl font-bold text-blue-600">60%</div>
+                                <div class="text-gray-600">Faster Reporting</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-green-600">40%</div>
+                                <div class="text-gray-600">Cost Reduction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microsoft Fabric -->
+                <div id="fabric" class="service-card p-8 animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Microsoft Fabric Implementation</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Leverage the full power of Microsoft's unified analytics platform with our comprehensive Fabric implementation services. From data engineering to real-time analytics, we help you build a modern data foundation.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">End-to-End Implementation</h4>
+                                <p class="text-gray-600">Complete Fabric setup from data ingestion to visualization</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Migration Services</h4>
+                                <p class="text-gray-600">Seamless transition from legacy systems to modern data architecture</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Lakehouse Architecture</h4>
+                                <p class="text-gray-600">Unified data storage combining data lakes and warehouses</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-3">Implementation Timeline:</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Assessment & Planning:</span>
+                                <span class="font-semibold">2-3 weeks</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Setup & Configuration:</span>
+                                <span class="font-semibold">4-6 weeks</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Migration & Testing:</span>
+                                <span class="font-semibold">6-8 weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Analytics -->
+                <div id="analytics" class="service-card p-8 animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Advanced Analytics</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Unlock predictive insights and drive proactive decision-making with our advanced analytics services. From machine learning models to statistical analysis, we help you see what's coming next.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Predictive Modeling</h4>
+                                <p class="text-gray-600">Forecast trends, identify risks, and anticipate customer behavior</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Machine Learning Solutions</h4>
+                                <p class="text-gray-600">Automated insights and pattern recognition from complex datasets</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Statistical Analysis</h4>
+                                <p class="text-gray-600">Rigorous analysis to validate hypotheses and guide strategy</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-3">Analytics Capabilities:</h4>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>Regression Analysis</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>Time Series Forecasting</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>Classification Models</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                </svg>
+                                <span>Clustering Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Training -->
+                <div id="training" class="service-card p-8 animate-on-scroll">
+                    <div class="service-icon">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Analytics Training</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Build your team's data analytics capabilities with our comprehensive training programs. From Power BI fundamentals to advanced analytics techniques, we empower your organization to become data-driven.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Power BI Certification Prep</h4>
+                                <p class="text-gray-600">Comprehensive preparation for Microsoft Power BI certifications</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Custom Workshops</h4>
+                                <p class="text-gray-600">Tailored training sessions for your specific business needs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-600 rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Ongoing Support</h4>
+                                <p class="text-gray-600">Continuous learning resources and expert guidance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-3">Training Programs:</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Power BI Fundamentals</span>
+                                <span class="text-sm bg-orange-200 text-orange-800 px-2 py-1 rounded">2 Days</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Advanced DAX & Modeling</span>
+                                <span class="text-sm bg-orange-200 text-orange-800 px-2 py-1 rounded">3 Days</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Data Analytics Strategy</span>
+                                <span class="text-sm bg-orange-200 text-orange-800 px-2 py-1 rounded">1 Day</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Dashboard -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Experience Our Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore interactive dashboards and see how our solutions can transform your data into actionable insights.
+                </p>
+            </div>
+            
+            <div id="demo-dashboard" class="demo-dashboard animate-on-scroll">
+                <div class="flex border-b">
+                    <div class="dashboard-tab active" data-chart="sales-chart">Sales Performance</div>
+                    <div class="dashboard-tab" data-chart="operations-chart">Operations</div>
+                    <div class="dashboard-tab" data-chart="finance-chart">Financial KPIs</div>
+                </div>
+                
+                <div class="chart-container active" id="sales-chart">
+                    <div id="sales-demo-chart" style="height: 400px;"></div>
+                </div>
+                
+                <div class="chart-container" id="operations-chart">
+                    <div id="operations-demo-chart" style="height: 400px;"></div>
+                </div>
+                
+                <div class="chart-container" id="finance-chart">
+                    <div id="finance-demo-chart" style="height: 400px;"></div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 animate-on-scroll">
+                <a href="index.html#consultation" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block">
+                    Get Your Custom Dashboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Overview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Flexible Engagement Models</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose the engagement model that best fits your project requirements and budget.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="pricing-card p-8 animate-on-scroll">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Project-Based</h3>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">$15K - $50K</div>
+                    <div class="text-gray-600 mb-6">Fixed-price projects with defined scope and deliverables</div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Fixed timeline & budget</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Clear deliverables</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Ideal for specific initiatives</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="index.html#consultation" class="block w-full bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        Get Quote
+                    </a>
+                </div>
+                
+                <div class="pricing-card featured p-8 animate-on-scroll">
+                    <div class="bg-blue-600 text-white text-center py-2 px-4 rounded-full text-sm font-semibold mb-4">Most Popular</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Retainer Model</h3>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">$8K - $15K</div>
+                    <div class="text-gray-600 mb-6">Monthly retainer for ongoing support and development</div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Dedicated team availability</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Priority support & maintenance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Continuous improvement</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="index.html#consultation" class="block w-full bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        Start Retainer
+                    </a>
+                </div>
+                
+                <div class="pricing-card p-8 animate-on-scroll">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Hourly Consulting</h3>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">$150 - $250</div>
+                    <div class="text-gray-600 mb-6">Per hour for advisory and development services</div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Maximum flexibility</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Expert advisory services</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span>Perfect for small projects</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="index.html#consultation" class="block w-full bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        Book Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Let's discuss your data analytics needs and create a customized solution that delivers measurable results for your business.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#consultation" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                    Schedule Free Consultation
+                </a>
+                <a href="case-studies.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    View Case Studies
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">DataVision Pro</div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Professional data analytics consulting services that transform complex data into strategic business advantage.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#powerbi" class="hover:text-white transition-colors">Power BI Development</a></li>
+                        <li><a href="#fabric" class="hover:text-white transition-colors">Microsoft Fabric</a></li>
+                        <li><a href="#analytics" class="hover:text-white transition-colors">Advanced Analytics</a></li>
+                        <li><a href="#training" class="hover:text-white transition-colors">Analytics Training</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="case-studies.html" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Insights & Blog</a></li>
+                        <li><a href="index.html#roi-calculator" class="hover:text-white transition-colors">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 hello@datavisionpro.com</p>
+                        <p>📞 (555) 123-4567</p>
+                        <p>🌐 www.datavisionpro.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 DataVision Pro. All rights reserved. | Professional Data Analytics Consulting Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Initialize demo charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sales Chart
+            const salesChart = echarts.init(document.getElementById('sales-demo-chart'));
+            const salesOption = {
+                title: {
+                    text: 'Sales Performance',
+                    textStyle: { color: '#2d3748', fontSize: 16 }
+                },
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['Revenue', 'Target'] },
+                xAxis: {
+                    type: 'category',
+                    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                },
+                yAxis: { type: 'value' },
+                series: [
+                    {
+                        name: 'Revenue',
+                        data: [120, 200, 150, 80, 70, 110],
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: { color: '#3182ce' }
+                    },
+                    {
+                        name: 'Target',
+                        data: [100, 100, 100, 100, 100, 100],
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: { color: '#e53e3e' },
+                        lineStyle: { type: 'dashed' }
+                    }
+                ]
+            };
+            salesChart.setOption(salesOption);
+
+            // Operations Chart
+            const operationsChart = echarts.init(document.getElementById('operations-demo-chart'));
+            const operationsOption = {
+                title: {
+                    text: 'Operations Metrics',
+                    textStyle: { color: '#2d3748', fontSize: 16 }
+                },
+                tooltip: { trigger: 'item' },
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    data: [
+                        { value: 35, name: 'Manufacturing' },
+                        { value: 25, name: 'Logistics' },
+                        { value: 20, name: 'Quality Control' },
+                        { value: 20, name: 'Maintenance' }
+                    ],
+                    itemStyle: {
+                        color: function(params) {
+                            const colors = ['#3182ce', '#38a169', '#d69e2e', '#e53e3e'];
+                            return colors[params.dataIndex];
+                        }
+                    }
+                }]
+            };
+            operationsChart.setOption(operationsOption);
+
+            // Finance Chart
+            const financeChart = echarts.init(document.getElementById('finance-demo-chart'));
+            const financeOption = {
+                title: {
+                    text: 'Financial KPIs',
+                    textStyle: { color: '#2d3748', fontSize: 16 }
+                },
+                tooltip: { trigger: 'axis' },
+                xAxis: {
+                    type: 'category',
+                    data: ['Q1', 'Q2', 'Q3', 'Q4']
+                },
+                yAxis: { type: 'value' },
+                series: [{
+                    data: [85, 92, 88, 95],
+                    type: 'bar',
+                    itemStyle: { color: '#3182ce' },
+                    name: 'Profit Margin %'
+                }]
+            };
+            financeChart.setOption(financeOption);
+        });
+    </script>
+</body>
+</html>

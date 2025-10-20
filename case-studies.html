@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies | Data Analytics Success Stories & ROI Results</title>
+    <meta name="description" content="Real-world data analytics case studies showing measurable business impact. See how our Power BI and Microsoft Fabric solutions delivered ROI for Fortune 500 companies.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Case Studies | Data Analytics Success Stories & ROI Results">
+    <meta property="og:description" content="Explore proven data analytics case studies with measurable ROI results. See how Power BI and Microsoft Fabric solutions transformed businesses across industries.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-navy: #1a365d;
+            --steel-blue: #2d3748;
+            --bright-blue: #3182ce;
+            --light-gray: #f7fafc;
+            --charcoal: #2d3748;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .filter-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-button:hover {
+            border-color: var(--bright-blue);
+            color: var(--bright-blue);
+        }
+        
+        .filter-button.active {
+            background: var(--bright-blue);
+            border-color: var(--bright-blue);
+            color: white;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+        
+        .nav-link.active {
+            color: var(--bright-blue);
+            border-bottom: 2px solid var(--bright-blue);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--bright-blue), var(--primary-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .industry-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .industry-manufacturing { background: #fef3c7; color: #92400e; }
+        .industry-healthcare { background: #dbeafe; color: #1e40af; }
+        .industry-financial { background: #d1fae5; color: #065f46; }
+        .industry-retail { background: #fce7f3; color: #9d174d; }
+        
+        .solution-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #e0e7ff;
+            color: #3730a3;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">DataVision Pro</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="case-studies.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Case Studies</a>
+                        <a href="blog.html" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Insights</a>
+                        <a href="index.html#consultation" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Free Consultation</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-btn text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu fixed top-16 right-0 h-full w-64 bg-white shadow-lg md:hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
+                <a href="services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Services</a>
+                <a href="case-studies.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Case Studies</a>
+                <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600">Insights</a>
+                <a href="index.html#consultation" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center">Free Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-on-scroll">
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                    Proven Results Across Industries
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Explore real-world success stories that demonstrate the transformative power of data analytics. See how our solutions have delivered measurable ROI and operational improvements for organizations like yours.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Metrics -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Aggregate Impact Across All Projects</h2>
+                <p class="text-xl text-gray-600">The combined results of our data analytics implementations</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="metric-card animate-on-scroll">
+                    <div class="text-4xl font-bold text-blue-600 mb-2 counter" data-target="40">0</div>
+                    <div class="text-gray-600 font-semibold">Average % Cost Reduction</div>
+                    <div class="text-sm text-gray-500 mt-2">Through automated reporting and efficiency gains</div>
+                </div>
+                
+                <div class="metric-card animate-on-scroll">
+                    <div class="text-4xl font-bold text-green-600 mb-2 counter" data-target="65">0</div>
+                    <div class="text-gray-600 font-semibold">Average % Faster Reporting</div>
+                    <div class="text-sm text-gray-500 mt-2">Reduction in time to generate insights</div>
+                </div>
+                
+                <div class="metric-card animate-on-scroll">
+                    <div class="text-4xl font-bold text-purple-600 mb-2 counter" data-target="85">0</div>
+                    <div class="text-gray-600 font-semibold">Average % Improvement</div>
+                    <div class="text-sm text-gray-500 mt-2">In decision-making speed and accuracy</div>
+                </div>
+                
+                <div class="metric-card animate-on-scroll">
+                    <div class="text-4xl font-bold text-orange-600 mb-2 counter" data-target="300">0</div>
+                    <div class="text-gray-600 font-semibold">Average % ROI</div>
+                    <div class="text-sm text-gray-500 mt-2">Return on investment within 12 months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 animate-on-scroll">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Filter Case Studies</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="case-study-filter filter-button active" data-filter="all">All Industries</button>
+                    <button class="case-study-filter filter-button" data-filter="manufacturing">Manufacturing</button>
+                    <button class="case-study-filter filter-button" data-filter="healthcare">Healthcare</button>
+                    <button class="case-study-filter filter-button" data-filter="financial">Financial Services</button>
+                    <button class="case-study-filter filter-button" data-filter="retail">Retail</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Grid -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Fortune 500 Manufacturing -->
+                <div class="case-study-card animate-on-scroll" data-categories="manufacturing,powerbi" data-modal="manufacturing-modal">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="industry-badge industry-manufacturing">Manufacturing</span>
+                            <div class="text-sm text-gray-500">6 months ago</div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            Fortune 500 Manufacturing: 40% Reduction in Reporting Time
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Global manufacturing leader struggled with fragmented data across 15+ systems, manual reporting processes taking 40 hours weekly, and inconsistent KPI tracking across departments.
+                        </p>
+                        
+                        <div class="space-y-2 mb-6">
+                            <div class="solution-badge">Power BI</div>
+                            <div class="solution-badge">Data Integration</div>
+                            <div class="solution-badge">Automated Reporting</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">40%</div>
+                                <div class="text-sm text-gray-600">Faster Reporting</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">$2M</div>
+                                <div class="text-sm text-gray-600">Annual Savings</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">15</div>
+                                <div class="text-sm text-gray-600">Systems Integrated</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-blue-600 font-semibold hover:text-blue-700 cursor-pointer">
+                            Read Full Case Study →
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Healthcare Network -->
+                <div class="case-study-card animate-on-scroll" data-categories="healthcare,powerbi,analytics" data-modal="healthcare-modal">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="industry-badge industry-healthcare">Healthcare</span>
+                            <div class="text-sm text-gray-500">8 months ago</div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            Regional Healthcare Network: 25% Faster Clinical Decision-Making
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Multi-hospital healthcare network needed unified patient data visualization, real-time clinical metrics, and predictive analytics for resource allocation and patient outcome improvement.
+                        </p>
+                        
+                        <div class="space-y-2 mb-6">
+                            <div class="solution-badge">Power BI</div>
+                            <div class="solution-badge">Advanced Analytics</div>
+                            <div class="solution-badge">Real-time Dashboards</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">25%</div>
+                                <div class="text-sm text-gray-600">Faster Decisions</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">30%</div>
+                                <div class="text-sm text-gray-600">Better Outcomes</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">12</div>
+                                <div class="text-sm text-gray-600">Hospitals Connected</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-blue-600 font-semibold hover:text-blue-700 cursor-pointer">
+                            Read Full Case Study →
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Services -->
+                <div class="case-study-card animate-on-scroll" data-categories="financial,fabric,analytics" data-modal="financial-modal">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="industry-badge industry-financial">Financial Services</span>
+                            <div class="text-sm text-gray-500">4 months ago</div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            Investment Firm: 30% Reduction in Compliance Costs
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Mid-size investment management firm required comprehensive risk analysis system, automated compliance reporting, and real-time portfolio performance tracking across multiple asset classes.
+                        </p>
+                        
+                        <div class="space-y-2 mb-6">
+                            <div class="solution-badge">Microsoft Fabric</div>
+                            <div class="solution-badge">Risk Analytics</div>
+                            <div class="solution-badge">Compliance Automation</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">30%</div>
+                                <div class="text-sm text-gray-600">Cost Reduction</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">99.5%</div>
+                                <div class="text-sm text-gray-600">Compliance Rate</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">$500M</div>
+                                <div class="text-sm text-gray-600">Assets Tracked</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-blue-600 font-semibold hover:text-blue-700 cursor-pointer">
+                            Read Full Case Study →
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retail Chain -->
+                <div class="case-study-card animate-on-scroll" data-categories="retail,powerbi,analytics" data-modal="retail-modal">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="industry-badge industry-retail">Retail</span>
+                            <div class="text-sm text-gray-500">5 months ago</div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            National Retail Chain: 15% Increase in Profitability
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Multi-channel retail chain with 200+ locations needed inventory optimization, customer behavior analysis, and dynamic pricing strategies to improve margins and reduce stockouts.
+                        </p>
+                        
+                        <div class="space-y-2 mb-6">
+                            <div class="solution-badge">Power BI</div>
+                            <div class="solution-badge">Predictive Analytics</div>
+                            <div class="solution-badge">Inventory Optimization</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">15%</div>
+                                <div class="text-sm text-gray-600">Profit Increase</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">35%</div>
+                                <div class="text-sm text-gray-600">Stockout Reduction</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">200+</div>
+                                <div class="text-sm text-gray-600">Stores Optimized</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-blue-600 font-semibold hover:text-blue-700 cursor-pointer">
+                            Read Full Case Study →
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Proven Methodology</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    A systematic approach that ensures consistent, measurable results across all our data analytics implementations.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Assessment & Strategy</h3>
+                    <p class="text-gray-600">
+                        Comprehensive analysis of current data infrastructure, business objectives, and strategic alignment to define success metrics.
+                    </p>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Design & Architecture</h3>
+                    <p class="text-gray-600">
+                        Create scalable data architecture, design intuitive dashboards, and establish governance frameworks for long-term success.
+                    </p>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Implementation & Testing</h3>
+                    <p class="text-gray-600">
+                        Agile development approach with continuous testing, user feedback integration, and iterative improvements.
+                    </p>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">4</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Training & Support</h3>
+                    <p class="text-gray-600">
+                        Comprehensive user training, documentation, and ongoing support to ensure adoption and maximize value.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-blue-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Join Our Success Stories?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Let's discuss how we can achieve similar results for your organization. Schedule a free consultation to explore the possibilities.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#consultation" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                    Schedule Free Consultation
+                </a>
+                <a href="services.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Explore Our Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Manufacturing Modal -->
+    <div id="manufacturing-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Fortune 500 Manufacturing Success Story</h2>
+                        <span class="industry-badge industry-manufacturing">Manufacturing</span>
+                    </div>
+                    <button class="modal-close text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3>The Challenge</h3>
+                    <p>A global manufacturing leader with operations across 25 countries was struggling with data fragmentation across 15+ legacy systems. Their monthly reporting process required 40 hours of manual work, involved 8 different analysts, and often resulted in inconsistent KPI calculations across departments.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <p>We implemented a comprehensive Power BI solution with:</p>
+                    <ul>
+                        <li>Unified data model integrating all 15 legacy systems</li>
+                        <li>Automated ETL processes reducing manual intervention</li>
+                        <li>Interactive dashboards for real-time monitoring</li>
+                        <li>Self-service analytics capabilities for business users</li>
+                    </ul>
+                    
+                    <h3>Implementation Timeline</h3>
+                    <ul>
+                        <li><strong>Weeks 1-3:</strong> Data assessment and architecture design</li>
+                        <li><strong>Weeks 4-8:</strong> Data integration and model development</li>
+                        <li><strong>Weeks 9-12:</strong> Dashboard creation and user training</li>
+                        <li><strong>Weeks 13-16:</strong> Testing, refinement, and rollout</li>
+                    </ul>
+                    
+                    <h3>Measurable Results</h3>
+                    <div class="grid grid-cols-2 gap-4 my-6">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">40%</div>
+                            <div class="text-sm text-gray-600">Reduction in Reporting Time</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">$2M</div>
+                            <div class="text-sm text-gray-600">Annual Cost Savings</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Long-term Impact</h3>
+                    <p>Twelve months post-implementation, the client reported sustained improvements in operational efficiency, better decision-making capabilities, and increased user adoption rates of 85% across the organization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Healthcare Modal -->
+    <div id="healthcare-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Regional Healthcare Network Transformation</h2>
+                        <span class="industry-badge industry-healthcare">Healthcare</span>
+                    </div>
+                    <button class="modal-close text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3>The Challenge</h3>
+                    <p>A regional healthcare network spanning 12 hospitals needed to unify patient data from multiple EMR systems, provide real-time clinical metrics to healthcare providers, and implement predictive analytics for resource allocation and patient outcome improvement.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <p>We developed an integrated analytics platform featuring:</p>
+                    <ul>
+                        <li>HIPAA-compliant data integration from 5 different EMR systems</li>
+                        <li>Real-time clinical dashboards for emergency department monitoring</li>
+                        <li>Predictive models for patient readmission risk</li>
+                        <li>Resource allocation optimization algorithms</li>
+                    </ul>
+                    
+                    <h3>Key Achievements</h3>
+                    <div class="grid grid-cols-3 gap-4 my-6">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">25%</div>
+                            <div class="text-sm text-gray-600">Faster Clinical Decisions</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">30%</div>
+                            <div class="text-sm text-gray-600">Improved Patient Outcomes</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-purple-600">12</div>
+                            <div class="text-sm text-gray-600">Hospitals Connected</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Modal -->
+    <div id="financial-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Investment Firm Compliance & Risk Analytics</h2>
+                        <span class="industry-badge industry-financial">Financial Services</span>
+                    </div>
+                    <button class="modal-close text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3>The Challenge</h3>
+                    <p>A mid-size investment management firm managing $500M in assets needed to automate compliance reporting, implement real-time risk monitoring, and create comprehensive portfolio performance analytics while reducing operational costs.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <p>Implemented Microsoft Fabric-based analytics platform with:</p>
+                    <ul>
+                        <li>Real-time portfolio risk calculations and alerts</li>
+                        <li>Automated compliance reporting and audit trails</li>
+                        <li>Predictive analytics for market trend identification</li>
+                        <li>Client performance dashboards and reporting</li>
+                    </ul>
+                    
+                    <h3>Results</h3>
+                    <div class="grid grid-cols-3 gap-4 my-6">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">30%</div>
+                            <div class="text-sm text-gray-600">Compliance Cost Reduction</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">99.5%</div>
+                            <div class="text-sm text-gray-600">Compliance Rate</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-purple-600">$500M</div>
+                            <div class="text-sm text-gray-600">Assets Tracked</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retail Modal -->
+    <div id="retail-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">National Retail Chain Optimization</h2>
+                        <span class="industry-badge industry-retail">Retail</span>
+                    </div>
+                    <button class="modal-close text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3>The Challenge</h3>
+                    <p>A national retail chain with 200+ locations across multiple states struggled with inventory management, inconsistent pricing strategies, and limited visibility into customer purchasing patterns across channels.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <p>Developed comprehensive retail analytics solution including:</p>
+                    <ul>
+                        <li>Inventory optimization algorithms based on demand forecasting</li>
+                        <li>Dynamic pricing models considering competition and demand</li>
+                        <li>Customer behavior analysis across online and offline channels</li>
+                        <li>Store performance benchmarking and optimization recommendations</li>
+                    </ul>
+                    
+                    <h3>Business Impact</h3>
+                    <div class="grid grid-cols-3 gap-4 my-6">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-blue-600">15%</div>
+                            <div class="text-sm text-gray-600">Profitability Increase</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">35%</div>
+                            <div class="text-sm text-gray-600">Stockout Reduction</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-purple-600">200+</div>
+                            <div class="text-sm text-gray-600">Stores Optimized</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">DataVision Pro</div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Professional data analytics consulting services that transform complex data into strategic business advantage.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="services.html#powerbi" class="hover:text-white transition-colors">Power BI Development</a></li>
+                        <li><a href="services.html#fabric" class="hover:text-white transition-colors">Microsoft Fabric</a></li>
+                        <li><a href="services.html#analytics" class="hover:text-white transition-colors">Advanced Analytics</a></li>
+                        <li><a href="services.html#training" class="hover:text-white transition-colors">Analytics Training</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="case-studies.html" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Insights & Blog</a></li>
+                        <li><a href="index.html#roi-calculator" class="hover:text-white transition-colors">ROI Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>📧 hello@datavisionpro.com</p>
+                        <p>📞 (555) 123-4567</p>
+                        <p>🌐 www.datavisionpro.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 DataVision Pro. All rights reserved. | Professional Data Analytics Consulting Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modals = document.querySelectorAll('.modal');
+            const modalTriggers = document.querySelectorAll('[data-modal]');
+            const modalCloses = document.querySelectorAll('.modal-close');
+            
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    const modalId = this.dataset.modal;
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            modalCloses.forEach(close => {
+                close.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
